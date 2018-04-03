@@ -13,3 +13,11 @@
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
+
+// CSS devise
+@import "devise/passwords/index";
+@import "devise/sessions/index";
+@import "devise/registrations/index";
+
+// models
+@import "products/index";

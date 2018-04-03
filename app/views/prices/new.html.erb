@@ -1,0 +1,9 @@
+<div class="container">
+<%= simple_form_for @product do |p| %>
+  <%= p.simple_fields_for :prices do |pr| %>
+    <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
+    <%= pr.input :value %>
+  <% end %>
+  <%= p.submit "Add a price", class: "btn btn-primary" %>
+<% end %>
+</div>

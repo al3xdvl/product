@@ -10,7 +10,6 @@ class ProdsController < ApplicationController
   def show
     @products = Prod.all
     @product = Prod.find(params[:id])
-    authorize @product
     @prices = @product.prices
     @price = Price.new
   end
@@ -18,15 +17,13 @@ class ProdsController < ApplicationController
   def new
     @product = Prod.new
     @product.prices.build
-    authorize @product
   end
 
   def create
     @product = Prod.new(product_params)
     @product.user_id = current_user.id
-    authorize @product
     @product.save!
-    redirect_to products_path(@product)
+    redirect_to prods_path(@product)
   end
 
   def edit

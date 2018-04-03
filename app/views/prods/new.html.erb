@@ -5,8 +5,8 @@
         <%= p.input :name %>
         <%= p.input :size %>
         <%= p.simple_fields_for :prices do |pr| %>
-          <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
           <%= pr.input :value %>
+          <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
         <% end %>
         <%= p.submit "Add a product", class: "btn btn-primary" %>
       <% end %>

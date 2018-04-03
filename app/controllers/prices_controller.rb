@@ -6,12 +6,11 @@ class PricesController < ApplicationController
   end
 
   def create
-    @product = Prod.find(params[:product_id])
+    @product = Prod.find(params[:prod_id])
     @price = Price.new(price_params)
-    authorize @price
-    @price.product = @product
+    @price.prod = @product
     @price.save
-    redirect_to product_path(@price.product)
+    redirect_to prod_path(@price.prod)
   end
 
 

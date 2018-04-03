@@ -1,0 +1,6 @@
+<h2>Add a new price</h2>
+  <%= simple_form_for [@product, @price] do |pr| %>
+    <%= pr.input :value %>
+    <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
+    <%= pr.submit "Add a price", class: "btn btn-primary" %>
+  <% end %>

@@ -19,14 +19,14 @@
     </div>
   </div>
 
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <h2>Add a new price</h2>
-      <%= simple_form_for [@product, @price] do |pr| %>
-        <%= pr.input :value %>
-        <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
-        <%= pr.submit "Add a price", class: "btn btn-primary" %>
+      <% @products.each do |product| %>
+        <% if policy(product).edit? %>
+          <%= render 'add' %>
+        <% end %>
       <% end %>
     </div>
   </div>

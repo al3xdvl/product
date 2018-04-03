@@ -20,7 +20,11 @@
 </tr>
 </table>
 
-<%= link_to "Add a product", new_prod_path, class: "btn btn-primary" %>
+<% if policy(Prod).create? %>
+  <%= link_to "Add a product", new_prod_path, class: "btn btn-primary" %>
+<% end %>
+
+<%#= link_to "Add a product", new_prod_path, class: "btn btn-primary" %>
 </div>
 
 

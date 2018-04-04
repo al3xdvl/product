@@ -11,8 +11,12 @@
       <td><%= @product.name %></td>
         <td><%= @product.size %></td>
         <% @prices.each do |price| %>
-        <td><%= price.value %> <%= price.currency %></td>
+        <td><%= price.value %> <%= price.currency %>
+          <% if policy(@product).edit? %>
+          <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, price_path(price.id),
+            method: :delete %></p></td>
         <td><%#= @product.prices.collect { |a| a.currency }.join %></td>
+        <% end %>
         <% end %>
       </tr>
       </table>
@@ -23,10 +27,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <% @products.each do |product| %>
-        <% if policy(product).edit? %>
+      <% if policy(@product).edit? %>
           <%= render 'add' %>
-        <% end %>
+          <%= link_to "Edit the product", edit_prod_path, class: "btn btn-primary"  %>
       <% end %>
     </div>
   </div>

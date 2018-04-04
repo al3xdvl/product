@@ -2,7 +2,7 @@
 .card {
   width: 100%;
   padding: 3em;
-  background: linear-gradient(-225deg, rgba(30,30,30,0.6) 30%, rgba(46,46,46,0.5) 80%), url("http://unsplash.it/400/300/?random");
+  background: linear-gradient(-225deg, rgba(30,30,30,0.6) 30%, rgba(46,46,46,0.5) 80%);
   background-size: cover;
   color: white;
 }
@@ -21,4 +21,9 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
+}
+
+#card-user {
+  margin-top: 20vh;
+  width: 100vh;
 }

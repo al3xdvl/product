@@ -35,10 +35,32 @@ class ProdsController < ApplicationController
 
   def edit
     @product = Prod.find(params[:id])
+    # @price = Price.find(params[:id])
+    authorize @product
+  end
+
+  def update
+    @product = Prod.find(params[:id])
+    @price = @product.prices
+    @product.user_id = current_user.id
+    authorize @product
+    if @product.update(product_params)
+      redirect_to prod_path(@product)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @product = Prod.find(params[:id])
+    @product.user_id = current_user.id
+    authorize @product
+    @product.destroy
+    redirect_to prods_path
   end
 
 private
     def product_params
-      params.require(:prod).permit(:name, :size, prices_attributes: [:currency, :value])
+      params.require(:prod).permit(:name, :size, prices_attributes: [:id, :currency, :value, :prod_id])
     end
 end

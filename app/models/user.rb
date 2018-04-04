@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def name
-    "#{id} - #{email}"
+    "#{first_name} #{last_name}"
   end
 end

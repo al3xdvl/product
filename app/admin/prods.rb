@@ -11,15 +11,15 @@ index do
   column :size
   column :prices do |product|
     product.prices.each do |price|
-      columns price.value
-      columns price.currency
+      columns price.value + " " + price.currency
     end
     nil
   end
+  column :user
   actions
 end
 
-show do
+show title: :name do
     attributes_table do
       row :name
       row :size
@@ -38,6 +38,7 @@ end
 form do |f|
     f.semantic_errors
     f.inputs do
+      f.input :user
       f.input :name
       f.input :size
     end
@@ -60,7 +61,7 @@ controller do
     @product = Prod.new(product_params)
     @product.user_id = current_user.id
     @product.save
-    redirect_to admin_prods_path
+    redirect_to admin_products_path
   end
 
 

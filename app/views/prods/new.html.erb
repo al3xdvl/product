@@ -4,6 +4,12 @@
       <%= simple_form_for @product do |p| %>
         <%= p.input :name %>
         <%= p.input :size %>
+        <%= p.simple_fields_for :meta do |f| %>
+          <%= @product.meta.each do |k,v| %>
+          Add an attribute type: <%= f.input k.to_sym %>
+          Add an attribute: <%= f.input v.to_sym %>
+          <% end %>
+        <% end %>
         <%= p.simple_fields_for :prices do |pr| %>
           <%= pr.input :value %>
           <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>

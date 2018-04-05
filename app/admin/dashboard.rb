@@ -12,10 +12,25 @@ ActiveAdmin.register_page "Dashboard" do
 
   content do
 
-  panel "Recent Products" do
+  panel "Recent products" do
     table_for Prod.order("created_at desc").limit(5) do
       column :name
       column :user
+      column :created_at
+    end
+    strong { link_to "View All Products", admin_products_path }
+  end
+
+  panel "Your products" do
+    table_for Prod.where(user: current_user) do
+      column :name
+      column :size
+      column :prices do |product|
+        product.prices.each do |price|
+          columns price.value + " " + price.currency
+        end
+        nil
+      end
       column :created_at
     end
     strong { link_to "View All Products", admin_products_path }

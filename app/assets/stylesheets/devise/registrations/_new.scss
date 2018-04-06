@@ -1,3 +1,21 @@
 #title-registration-new {
-  color: $blue;
+  color: $gray;
+}
+
+.name-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.first-name {
+  padding-right: 0.5em;
+}
+
+.password-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.password {
+  padding-right: 0.1em;
 }

@@ -1,0 +1,28 @@
+#title-product-index {
+  color: $gray;
+}
+
+.index-table {
+  width: 100%;
+  // border-collapse: collapse;
+  margin-bottom: 3em;
+  th {
+    padding: 1em;
+    border-bottom: 0.1em solid $gray;
+  }
+  td {
+    padding: 0.2em;
+    a {
+      color: $orange;
+    }
+    i {
+      padding-top: 0.7em;
+    }
+  }
+}
+
+.title-index-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -1,14 +1,20 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-md-4 col-md-offset-4">
-      <table>
+  <!-- <div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-4"> -->
+      <table class="show-table">
       <tr>
+          <th></th>
           <th>Name</th>
           <th>Size</th>
           <th colspan="3">Prices</th>
       </tr>
       <tr>
-      <td><%= @product.name %></td>
+        <td><% if policy(@product).edit? %>
+          <%= link_to "<i class='far fa-trash-alt'></i>".html_safe, prod_path(@product),
+            method: :delete %>
+            <% end %>
+            </td>
+        <td><%= @product.name %></td>
         <td><%= @product.size %></td>
         <% @prices.each do |price| %>
         <td><%= price.value %> <%= price.currency %>
@@ -20,7 +26,8 @@
         <% end %>
       </tr>
       </table>
-    </div>
+ <!--    </div> -->
+    <!-- </div> -->
   </div>
 
 
@@ -28,9 +35,16 @@
   <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4">
       <% if policy(@product).edit? %>
-          <%= render 'add' %>
-          <%= link_to "Edit the product", edit_prod_path, class: "btn btn-primary"  %>
+          <h2>Add a new price</h2>
+  <%= simple_form_for [@product, @price] do |pr| %>
+    <%= pr.input :value %>
+    <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
+    <div class="btn-show">
+    <%= pr.submit "Add a price", class: "btn btn-primary btn-add-price" %>
+  <% end %>
+          <%= link_to "Edit the product", edit_prod_path, class: "btn btn-primary", id:"btn-edit"  %>
       <% end %>
+      </div>
     </div>
   </div>
 </div>

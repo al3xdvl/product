@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
-  root to: 'prods#index'
+  root to: 'pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, only: [:edit, :update, :show]
   resources :prices
   resources :prods do
     resources :prices
   end
+  get '/pages/home', to: 'pages#home', as: 'home'
 end

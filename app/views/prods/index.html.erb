@@ -1,4 +1,13 @@
+<div class="title-index-container">
+<div class="title-index">
 <h1 class="text-center" id="title-product-index">All the products</h1>
+</div>
+<div class="btn-index">
+<% if policy(Prod).create? %>
+  <%= link_to "Add a product", new_prod_path, class: "btn btn-primary btn-add" %>
+<% end %>
+</div>
+</div>
 <div class="container">
 <table class="index-table">
   <tr>
@@ -24,11 +33,6 @@
 <% end %>
 </tr>
 </table>
-
-<% if policy(Prod).create? %>
-  <%= link_to "Add a product", new_prod_path, class: "btn btn-primary btn-add" %>
-<% end %>
-
 </div>
 
 

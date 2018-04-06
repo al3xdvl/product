@@ -30,4 +30,7 @@
 .btn {
   background-color: $gray;
   border: 1px solid #4C4C4C !important;
+  &:hover {
+    background-color: #4C4C4C;
+  }
 }

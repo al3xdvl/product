@@ -2,5 +2,5 @@
   <%= simple_form_for [@product, @price] do |pr| %>
     <%= pr.input :value %>
     <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>
-    <%= pr.submit "Add a price", class: "btn btn-primary" %>
+    <%= pr.submit "Add a price", class: "btn btn-primary btn-add-price" %>
   <% end %>

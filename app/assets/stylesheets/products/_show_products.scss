@@ -10,6 +10,9 @@
     padding: 0.2em;
     a {
       color: $orange;
+      &:hover {
+        text-decoration: none;
+      }
     }
     i {
       padding-top: 0.7em;

@@ -41,6 +41,8 @@ form do |f|
       f.input :user
       f.input :name
       f.input :size
+      # f.inputs "Other attributes" do
+      #   f.has_many :meta do |attribute|
     end
     f.inputs "Prices" do
       f.has_many :prices do |price|

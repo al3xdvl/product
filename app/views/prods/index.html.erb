@@ -14,6 +14,7 @@
     <th></th>
     <th>Name</th>
     <th>Size</th>
+    <th>Other attributes</th>
     <th colspan="3">Prices</th>
   </tr>
 <% @products.each do |product| %>
@@ -24,6 +25,11 @@
   <% end %></td>
   <td><%= link_to product.name, prod_path(product) %></td>
   <td><%= product.size %></td>
+  <% if product.meta.empty? %>
+  <td>N/A</td>
+  <% else %>
+  <td><%= product.meta[:first]%>: <%= product.meta[:second] %></td>
+  <% end %>
   <% prices = product.prices.collect %>
     <% prices = prices.sort_by {|cur| cur.currency} %>
     <% prices.each do |price| %>

@@ -4,16 +4,12 @@
       <%= simple_form_for @product do |p| %>
         <%= p.input :name %>
         <%= p.input :size %>
-        <%#= p.simple_fields_for :meta do |f| %>
-          <%#= @product.meta.each do |k,v| %>
-        <!--   Add an attribute type: --> <%#= f.input k.to_sym %>
-          <!-- Add an attribute: --> <%#= f.input v.to_sym %>
-          <%# end %>
-        <%# end %>
+        <% if current_user.admin? %>
         <p> Add an attribute type:
         <input name="prod[meta][first]" type="text" /></p>
         <p> Add an attribute:
         <input name="prod[meta][second]" type="text" /></p>
+        <% end %>
         <%= p.simple_fields_for :prices do |pr| %>
           <%= pr.input :value %>
           <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>

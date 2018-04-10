@@ -4,6 +4,12 @@
       <%= simple_form_for @product do |p| %>
         <%= p.input :name %>
         <%= p.input :size %>
+        <% if current_user.admin? %>
+          <%= p.simple_fields_for :meta, OpenStruct.new(@product.meta) do |attr| %>
+            <%= attr.input "1", :label => "Add an attribute type:" %>
+            <%= attr.input "2", :label => "Add an attribute:" %>
+          <% end %>
+        <% end %>
         <%= p.simple_fields_for :prices do |pr| %>
           <%= pr.input :value %>
           <%= pr.input :currency, collection: ["dollars", "euros", "pounds"], as: :select %>

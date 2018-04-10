@@ -1,3 +1,14 @@
+<div class="title-index-container">
+<div class="title-index">
+<h1 class="text-center" id="title-product-index"><%= "#{@product.name}" %></h1>
+</div>
+<div class="btn-index">
+<% if policy(@product).edit? %>
+  <%= link_to "Edit the product", edit_prod_path, class: "btn btn-primary", id:"btn-edit"  %>
+<% end %>
+</div>
+</div>
+
 <div class="container">
   <!-- <div class="row">
     <div class="col-xs-12 col-md-4 col-md-offset-4"> -->
@@ -6,6 +17,7 @@
           <th></th>
           <th>Name</th>
           <th>Size</th>
+          <th>Other attributes</th>
           <th colspan="3">Prices</th>
       </tr>
       <tr>
@@ -16,6 +28,11 @@
             </td>
         <td><%= @product.name %></td>
         <td><%= @product.size %></td>
+        <% if @product.meta.empty? %>
+          <td>N/A</td>
+        <% else %>
+          <td><%= @product.meta["1"]%>: <%= @product.meta["2"] %></td>
+        <% end %>
         <% @prices.each do |price| %>
         <td><%= price.value %> <%= price.currency %>
           <% if policy(@product).edit? %>
@@ -42,8 +59,27 @@
     <div class="btn-show">
     <%= pr.submit "Add a price", class: "btn btn-primary btn-add-price" %>
   <% end %>
-          <%= link_to "Edit the product", edit_prod_path, class: "btn btn-primary", id:"btn-edit"  %>
       <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-md-4 col-md-offset-4">
+      <% if current_user.admin? %>
+          <h2>Add an attribute</h2>
+          <%= simple_form_for @product do |p| %>
+            <%= p.simple_fields_for :meta, OpenStruct.new(@product.meta) do |attr| %>
+            <%= attr.input "1", :label => "Existing attribute type:" %>
+              <%= attr.input "2", :label => "Existing attribute:" %>
+              <%= attr.input "#{@product.meta.keys.last.to_i + 1}".to_sym, :label => "Add an attribute type:" %>
+              <%= attr.input "#{@product.meta.keys.last.to_i + 2}".to_sym, :label => "Add an attribute:" %>
+            <% end %>
+
+    <div class="btn-show">
+    <%= p.submit "Add an attribute", class: "btn btn-primary btn-add-price" %>
+      <% end %>
+       <% end %>
       </div>
     </div>
   </div>

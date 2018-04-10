@@ -35,7 +35,6 @@ class ProdsController < ApplicationController
 
   def edit
     @product = Prod.find(params[:id])
-    # @price = Price.find(params[:id])
     authorize @product
   end
 

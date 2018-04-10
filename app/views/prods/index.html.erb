@@ -28,7 +28,7 @@
   <% if product.meta.empty? %>
   <td>N/A</td>
   <% else %>
-  <td><%= product.meta[:first]%>: <%= product.meta[:second] %></td>
+  <td><%= product.meta["1"]%>: <%= product.meta["2"] %></td>
   <% end %>
   <% prices = product.prices.collect %>
     <% prices = prices.sort_by {|cur| cur.currency} %>

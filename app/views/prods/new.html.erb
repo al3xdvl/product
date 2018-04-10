@@ -1,3 +1,5 @@
+<% require 'ostruct' %>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
@@ -5,10 +7,10 @@
         <%= p.input :name %>
         <%= p.input :size %>
         <% if current_user.admin? %>
-        <p> Add an attribute type:
-        <input name="prod[meta][first]" type="text" /></p>
-        <p> Add an attribute:
-        <input name="prod[meta][second]" type="text" /></p>
+          <%= p.simple_fields_for :meta, OpenStruct.new(@product.meta) do |attr| %>
+            <%= attr.input "1", :label => "Add an attribute type:" %>
+            <%= attr.input "2", :label => "Add an attribute:" %>
+          <% end %>
         <% end %>
         <%= p.simple_fields_for :prices do |pr| %>
           <%= pr.input :value %>

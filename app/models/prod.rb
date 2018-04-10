@@ -6,7 +6,7 @@ class Prod < ApplicationRecord
 
   serialize :meta, Hash
 
-  def after_initialize
-    self.meta ||= {} if new_record?
-  end
+  # def after_initialize
+  #   self.meta ||= {} if new_record?
+  # end
 end
